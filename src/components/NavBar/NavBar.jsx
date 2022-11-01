@@ -9,6 +9,9 @@ function NavBar() {
                     <h2> La Tienda de Blitz </h2>
                 </li>
                 <li>
+                    <a href="/">Historia</a>
+                </li>
+                <li>
                     <a href="/">Manuales</a>
                 </li>
                 <li>
