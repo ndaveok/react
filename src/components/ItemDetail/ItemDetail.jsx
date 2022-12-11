@@ -1,19 +1,37 @@
-import "./ItemDetail.css"
+import "./ItemDetail.css";
+import ItemCount from "../ItemCount/ItemCount";
+import { useContext, useState } from "react";
+import { cartContext } from "../../context/cartContext";
+import MyButton from "../MyButton/MyButton"; 
+import { Link } from "react-router-dom";
 
-function itemDetail ({producto}) {
-    return (
-      <div className="card-detail">
+
+function ItemDetail({ product }) {
+  const [isInCart, setIsInCart] = useState (false) 
+  const { addToCart}=useContext(cartContext)
+
+  function onAddToCart(count) {
+    setIsInCart (count); 
+    alert(`Agregaste ${count} items al carrito!`);
+    addToCart(product,count)
+  }
+
+  return (
+    <div className="card-detail">
       <div className="card-detail_img">
-        <img src={producto.img} alt={producto.titulo} />
+        <img src={product.imgurl} alt="Product img" />
       </div>
       <div className="card-detail_detail">
-        <h2>{producto.titulo}</h2>
-        <p> Descripcion acorde al producto que se esta mostrando en la card</p>
-        <p> Stock: {producto.stock}</p>
-        <h4 className="priceTag">$ {producto.precio}</h4>
+        <h2>{product.title}</h2>
+        <p>{product.description}</p>
+        <h4 className="priceTag">$ {product.price}</h4>
       </div>
+      {
+      isInCart ? <Link to = "/cart"><MyButton> Ir al Carrito </MyButton></Link> : 
+      <ItemCount onAddToCart={onAddToCart} stock ={product.stock} />
+    }
     </div>
-    )
+  );
 }
 
-export default itemDetail;
+export default ItemDetail;

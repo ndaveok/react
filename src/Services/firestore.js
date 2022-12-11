@@ -1,4 +1,75 @@
-const products = [
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, doc, getDoc, getDocs, query, where, addDoc } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBA80YoJ_M0j4Ui4tmOKIENbg9YYAObUCo",
+  authDomain: "reactcoder-b72db.firebaseapp.com",
+  projectId: "reactcoder-b72db",
+  storageBucket: "reactcoder-b72db.appspot.com",
+  messagingSenderId: "263100693293",
+  appId: "1:263100693293:web:20ebbbf4403508a54b31a4"
+};
+
+const app = initializeApp(firebaseConfig);
+const DB = getFirestore(app);
+
+export default async function getItems() {
+
+  const colectionProductsRef = collection(DB, "products");
+  const documentSnapshot = await getDocs(colectionProductsRef);
+  const documentsData = documentSnapshot.docs.map((doc) => {
+
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
+  });
+  return documentsData;
+}
+
+
+export async function getSingleItem(idParams) {
+  const docRef = doc(DB, "products", idParams);
+
+  const docSnapshot = await getDoc(docRef);
+
+  const itemData = docSnapshot.data();
+  itemData.id = docSnapshot.id;
+
+  return itemData;
+}
+
+export async function getItemsByCategory(categoryParams) {
+  const collectionRef = collection(DB, "products");
+
+  const queryCat = query(
+    collectionRef,
+    where("category", "==", categoryParams)
+  );
+
+  const documentSnapshot = await getDocs(queryCat);
+
+  const documentsData = documentSnapshot.docs.map((doc) => {
+
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
+  });
+
+  return documentsData;
+}
+
+export async function createOrder(order) {
+  const collectionRef = collection(DB, "orders");
+
+  const docOrder = await addDoc(collectionRef, order);
+
+  return docOrder.id;
+}
+
+export async function exportArrayToFirestore(){
+  const products = [
     {
       id: 1,
       title: "Kit introductorio de aventura para Calabozos y dragones",
@@ -179,6 +250,12 @@ const products = [
       category: "Miniaturas",
       imgurl: "https://m.media-amazon.com/images/I/61oS5-W9BwL._AC_SL1100_.jpg",
     },
-]
+];
+  const collectionRef = collection (DB, "products");  
 
-export default products;
+  for (let item of products){
+    item.index=item.id;
+    delete item.id;
+  let docOrder = await addDoc(collectionRef, item )
+  }
+}

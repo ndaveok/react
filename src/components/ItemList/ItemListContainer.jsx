@@ -1,43 +1,39 @@
-import React from 'react'
-import Item from './Item';
-import "./ItemListContainer.css"
-import {useState, useEffect} from "react";
-import getItems from '../../Services/mockService';
-import {useParams} from "react-router-dom";
+import { useState, useEffect } from "react";
+import Item from "./Item";
+import "./ItemList.css";
+import getItems, { getItemsByCategory } from "../../Services/firestore";
+import { useParams } from "react-router-dom";
+import ItemList from "./ItemList";
+import Loader from "../Loaders/Loader";
 
 
-function ItemListContainer () {
-
-  const [ productos, setProducts ] = useState ([]);
-  const {idCategoria} = useParams ();
+function ItemListContainer() {
+  const [products, setProducts] = useState(null);
+  const { idCategory } = useParams();
 
   async function getItemsAsync() {
-    let respuesta = await getItems(idCategoria);
-    setProducts(respuesta);
+    if (!idCategory) {
+      let respuesta = await getItems(idCategory);
+      setProducts(respuesta);
+    }
+    else{
+      let respuesta = await getItemsByCategory(idCategory)
+      setProducts(respuesta)
+    }
   }
 
   useEffect(() => {
     getItemsAsync();
-  }, [idCategoria]);
+    return () => {
+    };
+  }, [idCategory]);
 
-
-  
   return (
-    <div className='ItemList'>
-      {productos.map((producto) => {
-        return (
-          <Item
-            key= {producto.id}
-            id= {producto.id}
-            titulo= {producto.titulo}
-            img={producto.img}
-            categoria= {producto.categoria}
-            stock= {producto.stock}
-            precio= {producto.precio}
-          />
-        )
-      })}
+    //<ItemList products={products}/>//
+    <div className="catalogo">
+      {products ? <ItemList products = {products} /> : <Loader/>}
     </div>
+    
   );
 }
 
