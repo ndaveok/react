@@ -36,28 +36,24 @@ export function CartContextProvider({ children }) {
   }
 
   function clear() {
-
+    setCart([]);
   }
 
-  function removeItem(idRevove) {
+  function removeItem(itemIdR){
+    setCart(cart.filter(product =>product.id !== itemIdR));
+}
 
-  }
 
   function priceInCart() {
-    let totalP = 0;
-    cart.forEach((producto) => (totalP = totalP + (producto.price * producto.cantidad)));
-    return totalP;
+    let total = 0;
+    cart.forEach((product) => (total = total + (product.price * product.count)));
+    return total;
   }
-
-  function alreadyInCart(id){
-
-  }
-
 
 
   return (
     <cartContext.Provider
-      value={{ addToCart, cart, itemsInCart, priceInCart }}>  
+      value={{ addToCart, cart, itemsInCart, priceInCart, clear,removeItem }}>  
       {children}
     </cartContext.Provider>
   );

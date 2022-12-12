@@ -18,11 +18,10 @@ function CartView() {
     );
 
   async function handleCheckout(evt,data) {
-    // Crear nuestro objeto "orden de compra"
     const order = {
       buyer: data,
       items: cart,
-      total: 0,
+      total: priceInCart(),
       date: new Date(),
     };
 
@@ -39,14 +38,21 @@ function CartView() {
             <h2>{item.title}</h2>
             <h4>${item.price}</h4>
             <h4>unidades: {item.count}</h4>
-            <MyButton onTouchButton={() => removeItem(item.id)} colorBtn="red">
+            <MyButton onTouchButton={() => removeItem(item.id)} >
               X
             </MyButton>
           </div>
         ))}
       </div>
+
+        <div>
+            <h2>Total:</h2>
+            <h2>$ {priceInCart()}</h2>
+        </div>
+
+
       <CartForm onSubmit={handleCheckout} />
-      <MyButton>Vaciar carrito</MyButton>
+      <MyButton onTouchButton={clear}>Vaciar carrito</MyButton>
     </div>
   );
 }

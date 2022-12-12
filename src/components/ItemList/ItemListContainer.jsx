@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Item from "./Item";
 import "./ItemList.css";
 import getItems, { getItemsByCategory } from "../../Services/firestore";
 import { useParams } from "react-router-dom";
@@ -29,7 +28,6 @@ function ItemListContainer() {
   }, [idCategory]);
 
   return (
-    //<ItemList products={products}/>//
     <div className="catalogo">
       {products ? <ItemList products = {products} /> : <Loader/>}
     </div>

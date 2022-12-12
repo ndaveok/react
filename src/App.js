@@ -22,7 +22,7 @@ function App() {
             <Route path="/detail/:idItem" element=      {<ItemDetailContainer />} />
             <Route path="/cart" element = { <CartView/> } />
             <Route path="/thankyou/:idOrder" element={<ThankYou />} />
-            <Route path="*" element={<h1>Error 404: Está  página no existe</h1>} />
+            <Route path="*" element={<h1>La sitio a donde quiere ir, no existe !</h1>} />
           </Routes>
         </BrowserRouter>
       </CartContextProvider>

@@ -251,11 +251,10 @@ export async function exportArrayToFirestore(){
       imgurl: "https://m.media-amazon.com/images/I/61oS5-W9BwL._AC_SL1100_.jpg",
     },
 ];
-  const collectionRef = collection (DB, "products");  
+
 
   for (let item of products){
     item.index=item.id;
     delete item.id;
-  let docOrder = await addDoc(collectionRef, item )
   }
 }

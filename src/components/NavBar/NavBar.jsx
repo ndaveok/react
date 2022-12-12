@@ -9,7 +9,7 @@ function NavBar() {
       <ul className="nav-list">
         <li>
           <Link to="/">
-            <h2>Mi tienda</h2>
+            <h2>La Taberna de Blitz</h2>
           </Link>
         </li>
         <li>

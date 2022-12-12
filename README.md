@@ -1,3 +1,43 @@
+Presentacion de la pagina " La taberna de Blitz " 
+
+" Es una pagina dedicada a la venta de productos de juegos de Rol ubicado en Capital Federal " 
+
+La idea de esta pagina se me ocurrio por la escasez de locales o sitios que venden dicha mercaderia, ya que, con los problemas de aduana y al ser productos internaciones, es muy dificil encontrar un sitio que venda esta mercaderia. 
+
+El desarrollo de la misma fue realizado como proyecto para Coderhouse en el curso de React js, utilizando mayormente esta herramienta y css.
+
+La pagina esta dividida en una por tres categorias, el carrito y un formuario para finalizar la compra. 
+
+Cada producto tiene un detalle bien especifico, junto a la opcion de por agregar o quitar la cantidad que desea desde la vista previa.
+
+Si el cliente, una vez finalizada su busqueda se arrepiente de algun producto, puede desecharlo ese unico producto, como asi vaciar el carrito si lo desea. 
+
+Como somos una pagina confiable, una vez finaliza la compra, se le ortaga un comprobante de compra. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

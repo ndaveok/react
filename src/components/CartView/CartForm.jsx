@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import MyButton from "../MyButton/MyButton";
+import "./CartForm.css";
 
 export default function CartForm(props) {
   const [data, setData] = useState({
@@ -26,6 +27,9 @@ export default function CartForm(props) {
 
   return (
     <form onSubmit={onSubmit}>
+      <div>
+        <h2>Completa el formario para finalizar tu compra </h2>
+      </div>
       <div style={{ display: "flex", marginBottom: 8 }}>
         <label htmlFor="name" style={{ width: "100px", marginRight: 4 }}>
           Nombre
@@ -47,12 +51,12 @@ export default function CartForm(props) {
         <input required value={data.phone} name="phone" type="phone" onChange={onInputChange}/>
       </div>
 
-      <button
+      <MyButton 
         disabled={data.name === "" || data.phone === "" || data.email === ""}
         type="submit"
       >
         Terminar con tu compra ! 
-      </button>
+      </MyButton>
     </form>
   );
 }

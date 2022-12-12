@@ -21,4 +21,4 @@ function ItemList ({products}) {
     )
 }
 
-export default React.memo (ItemList);
+export default ItemList;
